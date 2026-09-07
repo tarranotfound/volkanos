@@ -1,0 +1,9 @@
+* {
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    border-right: 1px solid #7C8A93;
+}
+

@@ -1,0 +1,19 @@
+{
+    "layer": "overlay",
+    "position": "bottom",
+
+    "width": 38,
+    "height": 40,
+
+    "exclusive": false,
+    "passthrough": false,
+
+    "modules-center": [
+        "custom/quick"
+    ],
+
+    "custom/quick": {
+        "format": "•••",
+        "tooltip": false
+    }
+}

@@ -1,0 +1,43 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    min-height: 0;
+    border: none;
+}
+
+
+
+#custom-battery {
+    color: #F2E9D0;
+}
+#custom-battery.charging {
+    color: #6fce75;
+}
+#custom-battery.critical {
+    color: #e0283b;
+}
+
+
+
+
+
+window#waybar {
+    background: transparent;
+    border-top: 1px solid #7C8A93;
+}
+
+#custom-status {
+    background: #131F28;
+    color: #F2E9D0;
+
+    font-size: 10px;
+
+    padding: 2px 9px 3px 9px;
+    margin: 0;
+
+    border-left: 1px solid #7C8A93;
+    border-right: 1px solid #7C8A93;
+    border-bottom: 1px solid #7C8A93;
+
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}

@@ -1,0 +1,11 @@
+#custom-battery {
+    color: #F2E9D0;
+}
+
+#custom-battery.charging {
+    color: #6fce75;
+}
+
+#custom-battery.critical {
+    color: #e0283b;
+}

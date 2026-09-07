@@ -1,0 +1,28 @@
+/* ~/.config/waybar/trigger.css */
+
+* {
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#custom-reveal {
+    background: transparent;
+    color: transparent;
+    min-width: 60px;
+    min-height: 3px;
+    padding: 0;
+    transition: all 0.15s ease-in-out;
+}
+
+/* on hover, the strip grows and shows a pointy down-arrow on black/orange */
+#custom-reveal:hover {
+    background: #000000;
+    color: #ff6200;
+    border: 1px solid #ff6200;
+    min-height: 14px;
+    padding: 0 14px;
+}

@@ -1,0 +1,8 @@
+{
+    "layer": "overlay",
+    "position": "right",
+
+    "width": 1,
+    "exclusive": false,
+    "passthrough": false
+}

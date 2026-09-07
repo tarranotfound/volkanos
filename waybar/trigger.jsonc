@@ -1,0 +1,19 @@
+// ~/.config/waybar/trigger.jsonc
+// A slim always-on strip at the very top edge. Hover -> arrow appears.
+// Click -> toggles the real bar (config.jsonc) into view with an animation.
+{
+    "layer": "overlay",
+    "position": "top",
+    "height": 3,
+    "margin-top": 0,
+    "exclusive": false,
+    "passthrough": false,
+
+    "modules-center": ["custom/reveal"],
+
+    "custom/reveal": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/toggle.sh"
+    }
+}

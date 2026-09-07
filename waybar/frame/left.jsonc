@@ -1,0 +1,29 @@
+{
+    "layer": "overlay",
+    "position": "left",
+    "width": 38,
+    "exclusive": false,
+    "passthrough": true,
+
+    "modules-center": [
+        "custom/network",
+        "custom/audio",
+        "custom/system"
+    ],
+
+    "custom/network": {
+        "format": "•",
+        "tooltip": false,
+        "on-click": "~/.local/bin/waybar-network"
+    },
+
+    "custom/audio": {
+        "format": "•",
+        "tooltip": false
+    },
+
+    "custom/system": {
+        "format": "•",
+        "tooltip": false
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": ["wlr/taskbar"],
+    "modules-center": [],
+    "modules-right": ["temperature", "memory", "battery", "clock"],
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+    "memory": {
+        "format": " {percentage}%"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+"temperature": {
+    "thermal-zone": 2,
+    "format": " {temperatureC}°C"
+}    
+
+
+
+}

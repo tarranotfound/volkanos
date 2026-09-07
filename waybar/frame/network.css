@@ -1,0 +1,33 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+}
+
+window#waybar {
+    background: rgba(20, 22, 28, 0.94);
+    border: 1px solid #7C8A93;
+    border-radius: 14px;
+}
+
+#custom-wifi,
+#custom-bluetooth,
+#custom-airplane {
+    padding: 12px 18px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+#custom-wifi.off,
+#custom-bluetooth.off,
+#custom-airplane.off {
+    color: #e0283b;
+}
+
+#custom-wifi.on,
+#custom-bluetooth.on,
+#custom-airplane.on {
+    color: #2dcc18;
+}
+
+#custom-wifi.connected {
+    color: #556fe6;
+}

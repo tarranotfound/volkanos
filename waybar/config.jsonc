@@ -1,0 +1,140 @@
+{
+    // =====================================================
+    // GENERAL
+    // =====================================================
+
+    "layer": "overlay",
+    "position": "top",
+
+    // false = Waybar tidak mengambil ruang dari window
+    "exclusive": false,
+
+    // Tinggi Waybar
+    "height": 1,
+
+
+    // =====================================================
+    // MODULES
+    // =====================================================
+
+    // KIRI
+    "modules-left": [
+        
+    ],
+
+    // TENGAH
+    "modules-center": [
+       "custom/status"
+    ],
+
+    // KANAN
+    "modules-right": [
+        "custom/battery"
+    ],
+
+
+    // =====================================================
+    // STATUS
+    // Jam + RAM
+    // =====================================================
+
+    "custom/status": {
+        "exec": "printf '%s  •  RAM %s%%' \"$(date '+%H:%M')\" \"$(free | awk '/Mem:/ {printf \"%.0f\", $3/$2*100}')\"",
+        "interval": 1,
+        "format": "{}",
+        "tooltip": false
+    },
+
+
+    // =====================================================
+    // BATTERY
+    // =====================================================
+
+"custom/battery": {
+    "exec": "~/.local/bin/waybar-battery",
+    "return-type": "json",
+    "interval": 5,
+    "tooltip": false
+},
+    // =====================================================
+    // CLOCK
+    // Aktifkan dengan:
+    //
+    // "modules-center": [
+    //     "clock"
+    // ]
+    // =====================================================
+
+    "clock": {
+        "format": "{:%H:%M:%S}",
+        "timezone": "Asia/Jakarta",
+        "tooltip": true,
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+
+    // =====================================================
+    // CPU
+    // Tambahkan "cpu" ke modules-left/right
+    // =====================================================
+
+    "cpu": {
+        "format": "CPU {usage}%",
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "CPU usage: {usage}%"
+    },
+
+
+    // =====================================================
+    // RAM
+    // Tambahkan "memory" ke modules-left/right
+    // =====================================================
+
+    "memory": {
+        "format": "RAM {percentage}%",
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
+    },
+
+
+    // =====================================================
+    // NETWORK
+    // Tambahkan "network" ke modules-right
+    // =====================================================
+
+    "network": {
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip": true,
+        "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "Ethernet\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 5
+    },
+
+
+    // =====================================================
+    // PULSEAUDIO
+    // Tambahkan "pulseaudio" ke modules-right
+    // =====================================================
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "tooltip": true,
+        "tooltip-format": "Volume: {volume}%"
+    }
+}
+

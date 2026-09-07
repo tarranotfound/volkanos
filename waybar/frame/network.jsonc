@@ -1,0 +1,35 @@
+{
+    "layer": "overlay",
+    "position": "left",
+    "width": 260,
+    "height": 180,
+    "offset-left": 45,
+    "exclusive": false,
+
+    "modules-center": [
+        "custom/wifi",
+        "custom/bluetooth",
+        "custom/airplane"
+    ],
+
+    "custom/wifi": {
+        "exec": "~/.local/bin/waybar-wifi",
+        "interval": 2,
+        "return-type": "json",
+        "on-click": "nmcli radio wifi toggle"
+    },
+
+    "custom/bluetooth": {
+        "exec": "~/.local/bin/waybar-bluetooth",
+        "interval": 2,
+        "return-type": "json",
+        "on-click": "bluetoothctl power"
+    },
+
+    "custom/airplane": {
+        "exec": "~/.local/bin/waybar-airplane",
+        "interval": 2,
+        "return-type": "json",
+        "on-click": "rfkill toggle all"
+    }
+}

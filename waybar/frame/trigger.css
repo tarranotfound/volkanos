@@ -1,0 +1,32 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    margin-bottom: 35px;
+}
+
+#custom-quick {
+    color: transparent;
+    background: transparent;
+
+    font-size: 9px;
+
+    padding: 4px 6px;
+
+    border: 1px solid transparent;
+    border-radius: 12px;
+
+    transition:
+        color 220ms ease,
+        background-color 220ms ease,
+        border-color 220ms ease;
+}
+
+#custom-quick:hover {
+    color: #ECE4CF;
+    background: #131F28;
+    border-color: #7C8A93;
+}

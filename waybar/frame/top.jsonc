@@ -1,0 +1,14 @@
+{
+    "layer": "overlay",
+    "position": "top",
+
+    "exclusive": false,
+    "passthrough": false,
+
+    "modules-center": ["custom/status"],
+
+    "custom/status": {
+        "exec": "printf '%s  %s' \"$(date '+%H:%M')\" \"$(free | awk '/Mem:/ {printf \"%d%%\", ($3/$2)*100}')\"",
+        "interval": 2
+    }
+}
