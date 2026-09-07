@@ -4,6 +4,7 @@ screenshots
 
 yall please support me by starring this repo
 also shoutout to:
-termflix
-singulartty (visualizer)
+termflix (visualizer),
+singulartty (audio visualizer)
 https://github.com/the-unknown/snglrtty 
+feel free for critic me 
