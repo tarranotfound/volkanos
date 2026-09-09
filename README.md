@@ -20,6 +20,10 @@ Copy the configurations:
 
 cp -r volkanos/waybar ~/.config/
 cp -r volkanos/fastfetch ~/.config/
+cp volkanos/hyprland.conf ~/.config/hypr/
+cp volkanos/hyprland.lua ~/.config/hypr/
+cp volkanos/hyprlock.conf ~/.config/hypr/
+
 
 ## Dependencies !!
 
@@ -30,6 +34,3 @@ cp -r volkanos/fastfetch ~/.config/
 - Hyprlock
 - Fuzzel
 
-cp volkanos/hyprland.conf ~/.config/hypr/
-cp volkanos/hyprland.lua ~/.config/hypr/
-cp volkanos/hyprlock.conf ~/.config/hypr/
