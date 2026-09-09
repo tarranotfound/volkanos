@@ -8,3 +8,28 @@ termflix (visualizer),
 singulartty (audio visualizer)
 https://github.com/the-unknown/snglrtty 
 feel free for critic me 
+
+
+## Installation
+
+Clone the repository:
+
+git clone https://github.com/tarranotfound/volkanos.git
+
+Copy the configurations:
+
+cp -r volkanos/waybar ~/.config/
+cp -r volkanos/fastfetch ~/.config/
+
+## Dependencies !!
+
+- Hyprland
+- Waybar
+- Kitty
+- Fastfetch
+- Hyprlock
+- Fuzzel
+
+cp volkanos/hyprland.conf ~/.config/hypr/
+cp volkanos/hyprland.lua ~/.config/hypr/
+cp volkanos/hyprlock.conf ~/.config/hypr/
