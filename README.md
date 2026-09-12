@@ -1,48 +1,45 @@
 # VOLKANOS
 
-> **A sharp, minimal Hyprland rice for Arch Linux.**
->
-> Red accents, cozy sage tones, and a clean terminal-focused setup.
+My personal Arch Linux + Hyprland setup.
+
+Volkanos is a rice I build while learning Linux, window managers, configuration files, and Git. It is made for my ThinkPad X390 Yoga, so some parts may need changes on other hardware.
 
 ![Volkanos](2026-09-06_14-44-22.png)
 
-## ✦ About
+## What I use
 
-**Volkanos** is my personal Linux rice and one of my first open-source projects.
-
-The goal is simple: keep the desktop **minimal, sharp, lightweight, and comfortable to use** without relying on heavy visual effects.
-
-## 🧩 Components
-
-- **Hyprland** — window manager and keybinds
+- **Hyprland** — window management, keybinds, and input settings
 - **Kitty** — terminal
 - **Waybar** — status bar
 - **Fuzzel** — application launcher
 - **Hyprlock** — lock screen
 - **Fastfetch** — system information
 - **Cava** — audio visualizer
-- **Vibe** — visual/background component
+- **Vibe** — background/visual configuration
+- **btop** — system monitor
 
-Thunar and btop are used by the setup but do not have dedicated configuration directories in this repository.
+## Design choices
 
-## 🎨 Style
+The setup is intentionally simple:
 
-- Dark and minimal
-- Sharp red accents
-- Sage green details
-- Thin borders
-- No unnecessary glassmorphism
-- Terminal-focused workflow
-- Lightweight configuration
+- Dark background with red accents
+- Sage green used for small details
+- Thin borders instead of heavy window effects
+- Mostly keyboard-driven workflow
+- Avoid unnecessary animations and resource usage
+- Keep each program's configuration separate
 
-## 📁 Structure
+The colors and layout are personal preferences, not a universal theme.
+
+## Repository layout
 
 ```text
 volkanos/
+├── btop/                 # btop config, theme, and notes
 ├── cava/                 # Cava config
 ├── fastfetch/            # Fastfetch theme
-├── fuzzel/               # Fuzzel launcher
-├── kitty/                # Kitty terminal
+├── fuzzel/               # Fuzzel launcher config
+├── kitty/                # Kitty terminal config
 ├── vibe/                 # Vibe config
 ├── waybar/               # Waybar config and modules
 ├── hyprland.conf         # Hyprland config
@@ -54,18 +51,18 @@ volkanos/
 └── CONTRIBUTING.md
 ```
 
-> **Note:** The Hyprland, Hyprlock, and monitor files currently live at the repository root. Check the paths before copying them into `~/.config`.
+The root-level Hyprland files are kept this way because this repository started as a copy of my working configuration. Check the paths before copying anything into `~/.config`.
 
-## ⚡ Installation
+## Installation
 
-### 1. Clone
+Clone the repository:
 
 ```bash
 git clone https://github.com/tarranotfound/volkanos.git
 cd volkanos
 ```
 
-### 2. Back up your current configs
+Back up your current configuration before changing anything:
 
 ```bash
 mkdir -p ~/.config/volkanos-backup
@@ -77,7 +74,7 @@ cp -r ~/.config/hyprlock ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/vibe ~/.config/volkanos-backup/ 2>/dev/null || true
 ```
 
-### 3. Install individual components
+Install only the components you want:
 
 ```bash
 cp -r cava ~/.config/
@@ -88,7 +85,9 @@ cp -r waybar ~/.config/
 cp -r fastfetch ~/.config/
 ```
 
-For the root Hyprland files, review and merge them into your existing setup rather than blindly replacing your configuration:
+For btop, read the instructions in [`btop/README.md`](btop/README.md).
+
+Review the Hyprland files before using them:
 
 ```bash
 cp hyprland.conf ~/.config/hypr/
@@ -97,45 +96,32 @@ cp hyprlock.conf ~/.config/hypr/
 cp monitors.conf ~/.config/hypr/
 ```
 
-> **Important:** These configs are hardware- and setup-dependent. Review monitor names, input settings, paths, keybinds, and installed programs before using them.
+Do not blindly replace your existing setup. Check monitor names, input settings, keybinds, file paths, and installed programs first.
 
-## 📦 Dependencies
+## Current limitations
 
-### Core
+- This is not an automatic installer.
+- The configs are not tested on every computer.
+- Some settings depend on my ThinkPad and display name.
+- The Lua and Hyprland files may need manual merging.
+- The repository contains personal preferences and experimental changes.
 
-- Arch Linux
-- Hyprland
-- Waybar
-- Kitty
-- Fuzzel
-- Hyprlock
-- Fastfetch
+## Development notes
 
-### Optional
+I change this repository gradually as I test things on my own system. A configuration is kept here when it is useful, readable, or worth recovering later. Not every file is perfect, and breaking changes may happen while I learn.
 
-- Cava
-- Vibe
-- btop
-- Thunar
+AI tools may be used for explanations, troubleshooting, or drafting parts of configuration files, but the settings are adjusted and tested against my actual setup before I keep them.
 
-Install only what you need with your preferred Arch Linux package manager.
+## Contributing
 
-## ⚠️ Disclaimer
-
-Volkanos is a **personal rice, not a universal installer**. Some settings are specific to the author's hardware and workflow.
-
-Always back up your existing configuration before replacing files.
-
-## 🤝 Contributing
-
-Volkanos is an open-source learning project. Bug reports, suggestions, and improvements are welcome.
+Suggestions, bug reports, and improvements are welcome. Please explain what was tested and include the relevant application, distro, and configuration details.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## 📸 Screenshots
+## License
 
-The screenshot above shows the current Volkanos setup. More screenshots and configuration updates may be added as the project evolves.
+See [LICENSE](LICENSE).
 
 ---
 
-**Made while learning Linux, Hyprland, and GitHub.**
+Built while learning Arch Linux, Hyprland, and Git.
