@@ -12,20 +12,18 @@
 
 The goal is simple: keep the desktop **minimal, sharp, lightweight, and comfortable to use** without relying on heavy visual effects.
 
-Built around:
+## 🧩 Components
 
-- Hyprland
-- Kitty
-- Waybar
-- Fuzzel
-- Hyprlock
-- Fastfetch
-- Cava
-- btop
-- Vibe
-- Thunar
+- **Hyprland** — window manager and keybinds
+- **Kitty** — terminal
+- **Waybar** — status bar
+- **Fuzzel** — application launcher
+- **Hyprlock** — lock screen
+- **Fastfetch** — system information
+- **Cava** — audio visualizer
+- **Vibe** — visual/background component
 
-> This project is still evolving. Configs may change as I experiment with my setup.
+Thunar and btop are used by the setup but do not have dedicated configuration directories in this repository.
 
 ## 🎨 Style
 
@@ -35,35 +33,39 @@ Built around:
 - Thin borders
 - No unnecessary glassmorphism
 - Terminal-focused workflow
-- Lightweight configuration for everyday use
+- Lightweight configuration
 
 ## 📁 Structure
 
 ```text
 volkanos/
-├── cava/          # Cava visualizer config
-├── fuzzel/        # Application launcher
-├── hyprland/      # Hyprland configuration
-├── hyprlock/      # Lock screen configuration
-├── kitty/         # Terminal configuration
-├── vibe/          # Vibe configuration
-├── waybar/        # Status bar
-├── fastfetch/     # System information
-└── README.md
+├── cava/                 # Cava config
+├── fastfetch/            # Fastfetch theme
+├── fuzzel/               # Fuzzel launcher
+├── kitty/                # Kitty terminal
+├── vibe/                 # Vibe config
+├── waybar/               # Waybar config and modules
+├── hyprland.conf         # Hyprland config
+├── hyprland.lua          # Hyprland Lua config
+├── hyprlock.conf         # Hyprlock config
+├── monitors.conf         # Optional monitor config
+├── README.md
+├── LICENSE
+└── CONTRIBUTING.md
 ```
+
+> **Note:** The Hyprland, Hyprlock, and monitor files currently live at the repository root. Check the paths before copying them into `~/.config`.
 
 ## ⚡ Installation
 
-### 1. Clone the repository
+### 1. Clone
 
 ```bash
 git clone https://github.com/tarranotfound/volkanos.git
 cd volkanos
 ```
 
-### 2. Back up your existing configs
-
-It is recommended to back up your current configuration before installing.
+### 2. Back up your current configs
 
 ```bash
 mkdir -p ~/.config/volkanos-backup
@@ -71,11 +73,11 @@ cp -r ~/.config/hypr ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/kitty ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/fuzzel ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/waybar ~/.config/volkanos-backup/ 2>/dev/null || true
+cp -r ~/.config/hyprlock ~/.config/volkanos-backup/ 2>/dev/null || true
+cp -r ~/.config/vibe ~/.config/volkanos-backup/ 2>/dev/null || true
 ```
 
-### 3. Install the configs
-
-Copy only the directories you want to use:
+### 3. Install individual components
 
 ```bash
 cp -r cava ~/.config/
@@ -84,63 +86,55 @@ cp -r kitty ~/.config/
 cp -r vibe ~/.config/
 cp -r waybar ~/.config/
 cp -r fastfetch ~/.config/
-cp -r hyprland ~/.config/
-cp -r hyprlock ~/.config/
 ```
 
-> **Tip:** You don't have to install everything. Pick the configs that fit your setup.
+For the root Hyprland files, review and merge them into your existing setup rather than blindly replacing your configuration:
+
+```bash
+cp hyprland.conf ~/.config/hypr/
+cp hyprland.lua ~/.config/hypr/
+cp hyprlock.conf ~/.config/hypr/
+cp monitors.conf ~/.config/hypr/
+```
+
+> **Important:** These configs are hardware- and setup-dependent. Review monitor names, input settings, paths, keybinds, and installed programs before using them.
 
 ## 📦 Dependencies
 
-### Required / core
+### Core
 
-- [Hyprland](https://hyprland.org/)
-- [Waybar](https://github.com/Alexays/Waybar)
-- [Kitty](https://sw.kovidgoyal.net/kitty/)
-- [Fuzzel](https://codeberg.org/dnkl/fuzzel)
-- [Hyprlock](https://github.com/hyprwm/hyprlock)
-- [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
+- Arch Linux
+- Hyprland
+- Waybar
+- Kitty
+- Fuzzel
+- Hyprlock
+- Fastfetch
 
 ### Optional
 
-- Cava — audio visualizer
-- btop — system monitor
-- Vibe — visual/background component
-- Thunar — file manager
+- Cava
+- Vibe
+- btop
+- Thunar
 
-Install the packages you need with your preferred Arch Linux package manager.
+Install only what you need with your preferred Arch Linux package manager.
 
-## 🖥️ Recommended Setup
+## ⚠️ Disclaimer
 
-Volkanos is designed around **Arch Linux + Hyprland**, but most of the individual configs can be adapted to other setups.
+Volkanos is a **personal rice, not a universal installer**. Some settings are specific to the author's hardware and workflow.
 
-Before using the Hyprland configuration, make sure your monitor, input devices, keybinds, and hardware-specific settings match your system.
+Always back up your existing configuration before replacing files.
 
-## ⚠️ Notes
+## 🤝 Contributing
 
-This is a personal rice, not a universal installer. Some paths, keybinds, dependencies, and settings may need to be adjusted for your machine.
+Volkanos is an open-source learning project. Bug reports, suggestions, and improvements are welcome.
 
-**Back up your configs before replacing them.**
-
-## ⭐ Credits & Inspiration
-
-Shoutout to:
-
-- [termflix](https://github.com/termflix) — terminal visualizer inspiration
-- [snglrtty](https://github.com/the-unknown/snglrtty) — audio visualizer
-- The Hyprland community — inspiration and documentation
+See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## 📸 Screenshots
 
-The screenshot above shows the Volkanos setup in action.
-
-More screenshots and configuration updates will be added as the project grows.
-
-## 🤝 Feedback
-
-Volkanos is an open-source learning project. **Criticism, suggestions, and improvements are welcome.**
-
-If you like the project, consider giving it a ⭐ on GitHub.
+The screenshot above shows the current Volkanos setup. More screenshots and configuration updates may be added as the project evolves.
 
 ---
 
