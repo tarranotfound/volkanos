@@ -19,12 +19,32 @@ You do not need to install every component to use the Niri configuration. Review
 
 ## Installation
 
+### Automatic installation
+
+From the repository root, run:
+
+```bash
+chmod +x niri/install.sh
+./niri/install.sh
+```
+
+The installer creates `~/.config/niri` if needed, backs up an existing `config.kdl`, and copies the Volkanos configuration into place.
+
+### Manual installation
+
 1. Back up your current Niri configuration.
 2. Copy `config.kdl` to `~/.config/niri/config.kdl`.
 3. Review commands, monitor names, input settings, and application paths.
 4. Reload Niri or log in again.
 
 The configuration is a starting point, not a universal installer. Hardware, display names, installed applications, and Niri versions can require changes.
+
+## Safety notes
+
+- Review `config.kdl` before applying it to your daily setup.
+- Check your monitor name with `niri msg outputs` and adjust the output section if needed.
+- Make sure Kitty, Fuzzel, and other optional programs are installed before using their keybinds.
+- Keep the generated backup until you confirm that the new configuration works.
 
 ## Philosophy
 
