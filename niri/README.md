@@ -28,14 +28,23 @@ chmod +x niri/install.sh
 ./niri/install.sh
 ```
 
-The installer creates `~/.config/niri` if needed, backs up an existing `config.kdl`, and copies the Volkanos configuration into place.
+The installer creates `~/.config/niri` if needed, backs up an existing `config.kdl`, and copies the Volkanos configuration into place. If `startup.sh` is present, copy it to `~/.config/niri/startup.sh` as well.
+
+To test the optional helper manually:
+
+```bash
+bash ~/.config/niri/startup.sh
+```
+
+The helper only starts commands that are installed. Review it before enabling it automatically.
 
 ### Manual installation
 
 1. Back up your current Niri configuration.
 2. Copy `config.kdl` to `~/.config/niri/config.kdl`.
-3. Review commands, monitor names, input settings, and application paths.
-4. Reload Niri or log in again.
+3. Optionally copy `startup.sh` to `~/.config/niri/startup.sh`.
+4. Review commands, monitor names, input settings, and application paths.
+5. Reload Niri or log in again.
 
 The configuration is a starting point, not a universal installer. Hardware, display names, installed applications, and Niri versions can require changes.
 
