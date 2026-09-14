@@ -17,6 +17,7 @@ Volkanos is a rice I build while learning Linux, window managers, configuration 
 - **Cava** — audio visualizer
 - **Vibe** — background/visual configuration
 - **btop** — system monitor
+- **Neovim** — lightweight editor and Volkanos theme
 
 ## Design choices
 
@@ -40,6 +41,7 @@ volkanos/
 ├── fastfetch/            # Fastfetch theme
 ├── fuzzel/               # Fuzzel launcher config
 ├── kitty/                # Kitty terminal config
+├── nvim/                 # Neovim config and Volkanos theme
 ├── vibe/                 # Vibe config
 ├── waybar/               # Waybar config and modules
 ├── hyprland.conf         # Hyprland config
@@ -72,6 +74,7 @@ cp -r ~/.config/fuzzel ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/waybar ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/hyprlock ~/.config/volkanos-backup/ 2>/dev/null || true
 cp -r ~/.config/vibe ~/.config/volkanos-backup/ 2>/dev/null || true
+cp -r ~/.config/nvim ~/.config/volkanos-backup/ 2>/dev/null || true
 ```
 
 Install only the components you want:
@@ -83,6 +86,7 @@ cp -r kitty ~/.config/
 cp -r vibe ~/.config/
 cp -r waybar ~/.config/
 cp -r fastfetch ~/.config/
+cp -r nvim ~/.config/
 ```
 
 For btop, read the instructions in [`btop/README.md`](btop/README.md).
