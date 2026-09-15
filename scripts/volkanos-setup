@@ -12,6 +12,24 @@ if [[ ${EUID} -eq 0 ]]; then
   exit 1
 fi
 
+check_environment() {
+  local missing=0
+
+  for command_name in bash sudo pacman; do
+    if ! command -v "$command_name" >/dev/null 2>&1; then
+      printf 'Missing required command: %s\n' "$command_name" >&2
+      missing=1
+    fi
+  done
+
+  if [[ ! -d "$REPO_ROOT" ]]; then
+    printf 'Repository root not found: %s\n' "$REPO_ROOT" >&2
+    missing=1
+  fi
+
+  (( missing == 0 )) || exit 1
+}
+
 if ! command -v gum >/dev/null 2>&1; then
   printf 'Volkanos Setup needs gum for its terminal menu.\n'
   read -r -p 'Install gum with pacman? [y/N] ' answer
@@ -22,6 +40,8 @@ if ! command -v gum >/dev/null 2>&1; then
     exit 1
   fi
 fi
+
+check_environment
 
 components=(
   'Hyprland|hyprland|hypr'
@@ -46,6 +66,17 @@ for item in "${components[@]}"; do
   labels+=("$label")
   packages["$label"]="$package|$config_name"
 done
+
+validate_selection() {
+  local label package
+  while IFS= read -r label; do
+    [[ -z $label ]] && continue
+    package=${packages[$label]%%|*}
+    if ! pacman -Si "$package" >/dev/null 2>&1 && ! pacman -Qi "$package" >/dev/null 2>&1; then
+      printf 'Warning: package may not be available in enabled repositories: %s\n' "$package"
+    fi
+  done <<< "$selected"
+}
 
 backup_configs() {
   local timestamp backup_dir label config_name config_dir
@@ -117,6 +148,8 @@ done <<< "$selected"
 printf '\nSelected packages:\n'
 printf '  - %s\n' "${install_packages[@]}"
 printf '\n'
+
+validate_selection
 
 gum confirm 'Create a backup of existing configs before installation?' && backup_configs
 gum confirm 'Continue with installation?' || exit 0
