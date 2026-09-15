@@ -99,35 +99,56 @@ backup_configs() {
   printf '\nBackup saved to: %s\n' "$backup_dir"
 }
 
+deploy_directory() {
+  local label source target
+  label=$1
+  source=$2
+  target=$3
+
+  if [[ ! -d "$source" ]]; then
+    printf '  No config found for %s; skipped.\n' "$label"
+    return 0
+  fi
+
+  mkdir -p "$target"
+  cp -a "$source/." "$target/"
+  printf '  Deployed: %s -> %s\n' "$label" "$target"
+}
+
+deploy_hyprland() {
+  local target file deployed=0
+  target="$HOME/.config/hypr"
+  mkdir -p "$target"
+
+  for file in hyprland.lua hyprland.conf monitors.conf workspaces.conf hyprlock.conf; do
+    if [[ -f "$REPO_ROOT/$file" ]]; then
+      cp -a "$REPO_ROOT/$file" "$target/"
+      printf '  Deployed: %s -> %s/%s\n' "$file" "$target" "$file"
+      deployed=1
+    fi
+  done
+
+  if (( deployed == 0 )); then
+    printf '  No Hyprland config files found; skipped.\n'
+  fi
+}
+
 deploy_configs() {
   local label config_name source target
   while IFS= read -r label; do
     [[ -z $label ]] && continue
     config_name=${packages[$label]##*|}
-    source=''
-    target="$HOME/.config/$config_name"
 
     case "$config_name" in
-      hypr) [[ -f "$REPO_ROOT/hyprland.lua" ]] && source="$REPO_ROOT/hyprland.lua" || true ;;
+      hypr)
+        deploy_hyprland
+        ;;
       kitty|waybar|fuzzel|btop|cava|nvim|quickshell)
-        [[ -d "$REPO_ROOT/$config_name" ]] && source="$REPO_ROOT/$config_name" || true
+        source="$REPO_ROOT/$config_name"
+        target="$HOME/.config/$config_name"
+        deploy_directory "$label" "$source" "$target"
         ;;
     esac
-
-    if [[ -z $source ]]; then
-      printf '  No config found for %s; skipped.\n' "$label"
-      continue
-    fi
-
-    mkdir -p "$(dirname -- "$target")"
-    if [[ -d $source ]]; then
-      mkdir -p "$target"
-      cp -a "$source/." "$target/"
-    else
-      mkdir -p "$target"
-      cp -a "$source" "$target/"
-    fi
-    printf '  Deployed: %s -> %s\n' "$label" "$target"
   done <<< "$selected"
 }
 
