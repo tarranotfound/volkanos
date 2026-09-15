@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+readonly VOLKANOS_RED='\033[31m'
+readonly RESET='\033[0m'
+
+if [[ ${EUID} -eq 0 ]]; then
+  printf '%bDo not run Volkanos Setup as root.%b\n' "$VOLKANOS_RED" "$RESET" >&2
+  exit 1
+fi
+
+if ! command -v gum >/dev/null 2>&1; then
+  printf 'Volkanos Setup needs gum for its terminal menu.\n'
+  read -r -p 'Install gum with pacman? [y/N] ' answer
+  if [[ $answer =~ ^[Yy]$ ]]; then
+    sudo pacman -S --needed gum
+  else
+    printf 'gum is required. Exiting.\n' >&2
+    exit 1
+  fi
+fi
+
+components=(
+  'Hyprland|hyprland'
+  'Niri|niri'
+  'Kitty|kitty'
+  'Waybar|waybar'
+  'Quickshell|quickshell'
+  'Fuzzel|fuzzel'
+  'btop|btop'
+  'Cava|cava'
+  'Neovim|neovim'
+  'Wallpapers tools|swww'
+)
+
+labels=()
+declare -A packages
+for item in "${components[@]}"; do
+  label=${item%%|*}
+  package=${item##*|}
+  labels+=("$label")
+  packages["$label"]=$package
+done
+
+printf '%bVOLKANOS SETUP%b\n\n' "$VOLKANOS_RED" "$RESET"
+selected=$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --header='Select components to install:') || exit 0
+
+if [[ -z ${selected//[[:space:]]/} ]]; then
+  printf 'No components selected. Exiting.\n'
+  exit 0
+fi
+
+install_packages=()
+while IFS= read -r label; do
+  [[ -z $label ]] && continue
+  install_packages+=("${packages[$label]}")
+done <<< "$selected"
+
+printf '\nSelected packages:\n'
+printf '  - %s\n' "${install_packages[@]}"
+printf '\n'
+
+gum confirm 'Continue with installation?' || exit 0
+
+sudo pacman -S --needed "${install_packages[@]}"
+printf '\nInstallation complete. Configuration deployment will be added in a later step.\n'
