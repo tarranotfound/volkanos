@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 readonly VOLKANOS_RED='\033[31m'
 readonly RESET='\033[0m'
+readonly BACKUP_ROOT="$HOME/.local/share/volkanos/backups"
 
 if [[ ${EUID} -eq 0 ]]; then
   printf '%bDo not run Volkanos Setup as root.%b\n' "$VOLKANOS_RED" "$RESET" >&2
@@ -21,26 +22,50 @@ if ! command -v gum >/dev/null 2>&1; then
 fi
 
 components=(
-  'Hyprland|hyprland'
-  'Niri|niri'
-  'Kitty|kitty'
-  'Waybar|waybar'
-  'Quickshell|quickshell'
-  'Fuzzel|fuzzel'
-  'btop|btop'
-  'Cava|cava'
-  'Neovim|neovim'
-  'Wallpapers tools|swww'
+  'Hyprland|hyprland|hypr'
+  'Niri|niri|niri'
+  'Kitty|kitty|kitty'
+  'Waybar|waybar|waybar'
+  'Quickshell|quickshell|quickshell'
+  'Fuzzel|fuzzel|fuzzel'
+  'btop|btop|btop'
+  'Cava|cava|cava'
+  'Neovim|neovim|nvim'
+  'Wallpapers tools|swww|swww'
 )
 
 labels=()
 declare -A packages
 for item in "${components[@]}"; do
   label=${item%%|*}
-  package=${item##*|}
+  remainder=${item#*|}
+  package=${remainder%%|*}
+  config_name=${remainder##*|}
   labels+=("$label")
-  packages["$label"]=$package
+  packages["$label"]="$package|$config_name"
 done
+
+backup_configs() {
+  local timestamp backup_dir label config_name config_dir
+  timestamp=$(date +%Y%m%d-%H%M%S)
+  backup_dir="$BACKUP_ROOT/$timestamp"
+  mkdir -p "$backup_dir"
+
+  while IFS= read -r label; do
+    [[ -z $label ]] && continue
+    config_name=${packages[$label]##*|}
+    config_dir="$HOME/.config/$config_name"
+    if [[ -e $config_dir ]]; then
+      mkdir -p "$backup_dir/$config_name"
+      cp -a "$config_dir" "$backup_dir/"
+      printf '  Backed up: %s\n' "$config_dir"
+    else
+      printf '  Skipped: %s (not found)\n' "$config_dir"
+    fi
+  done <<< "$selected"
+
+  printf '\nBackup saved to: %s\n' "$backup_dir"
+}
 
 printf '%bVOLKANOS SETUP%b\n\n' "$VOLKANOS_RED" "$RESET"
 selected=$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --header='Select components to install:') || exit 0
@@ -53,12 +78,14 @@ fi
 install_packages=()
 while IFS= read -r label; do
   [[ -z $label ]] && continue
-  install_packages+=("${packages[$label]}")
+  install_packages+=("${packages[$label]%%|*}")
 done <<< "$selected"
 
 printf '\nSelected packages:\n'
 printf '  - %s\n' "${install_packages[@]}"
 printf '\n'
+
+gum confirm 'Create a backup of existing configs before installation?' && backup_configs
 
 gum confirm 'Continue with installation?' || exit 0
 
