@@ -68,14 +68,29 @@ for item in "${components[@]}"; do
 done
 
 validate_selection() {
-  local label package
+  local label package unavailable=0
+  local -a missing_packages=()
+
   while IFS= read -r label; do
     [[ -z $label ]] && continue
     package=${packages[$label]%%|*}
-    if ! pacman -Si "$package" >/dev/null 2>&1 && ! pacman -Qi "$package" >/dev/null 2>&1; then
-      printf 'Warning: package may not be available in enabled repositories: %s\n' "$package"
+
+    if pacman -Si "$package" >/dev/null 2>&1 || pacman -Qi "$package" >/dev/null 2>&1; then
+      printf '  [ok] %s\n' "$package"
+    else
+      printf '  [missing] %s\n' "$package"
+      missing_packages+=("$package")
+      unavailable=1
     fi
   done <<< "$selected"
+
+  if (( unavailable )); then
+    printf '\nUnavailable packages were selected:\n'
+    printf '  - %s\n' "${missing_packages[@]}"
+    printf '\nRefresh your package databases or install these packages manually.\n'
+    printf 'Installation has been cancelled for safety.\n' >&2
+    return 1
+  fi
 }
 
 backup_configs() {
@@ -168,11 +183,10 @@ done <<< "$selected"
 
 printf '\nSelected packages:\n'
 printf '  - %s\n' "${install_packages[@]}"
-printf '\n'
+printf '\nChecking package availability:\n'
+validate_selection || exit 1
 
-validate_selection
-
-gum confirm 'Create a backup of existing configs before installation?' && backup_configs
+ gum confirm 'Create a backup of existing configs before installation?' && backup_configs
 gum confirm 'Continue with installation?' || exit 0
 
 sudo pacman -S --needed "${install_packages[@]}"
