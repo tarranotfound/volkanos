@@ -36,18 +36,24 @@ The colors and layout are personal preferences, not a universal theme.
 
 ```text
 volkanos/
-├── btop/                 # btop config, theme, and notes
-├── cava/                 # Cava config
-├── fastfetch/            # Fastfetch theme
-├── fuzzel/               # Fuzzel launcher config
-├── kitty/                # Kitty terminal config
-├── nvim/                 # Neovim config and Volkanos theme
-├── vibe/                 # Vibe config
-├── waybar/               # Waybar config and modules
-├── hyprland.conf         # Hyprland config
-├── hyprland.lua          # Hyprland Lua config
-├── hyprlock.conf         # Hyprlock config
-├── monitors.conf         # Optional monitor config
+├── btop/                    # btop config, theme, and notes
+├── cava/                    # Cava config
+├── fastfetch/               # Fastfetch theme
+├── fuzzel/                  # Fuzzel launcher config
+├── kitty/                   # Kitty terminal config
+├── nvim/                    # Neovim config and Volkanos theme
+├── vibe/                    # Vibe config
+├── waybar/                  # Waybar config and modules
+├── scripts/
+│   ├── volkanos-setup       # Interactive installer
+│   └── volkanos-setup-dry-run # Repository/setup checks
+├── docs/
+│   └── aur-packages.md      # Optional AUR package notes
+├── hyprland.conf            # Hyprland config
+├── hyprland.lua             # Hyprland Lua config
+├── hyprlock.conf            # Hyprlock config
+├── monitors.conf            # Optional monitor config
+├── workspaces.conf          # Workspace config
 ├── README.md
 ├── LICENSE
 └── CONTRIBUTING.md
@@ -56,6 +62,56 @@ volkanos/
 The root-level Hyprland files are kept this way because this repository started as a copy of my working configuration. Check the paths before copying anything into `~/.config`.
 
 ## Installation
+
+### Automatic setup
+
+Volkanos includes a terminal-based setup script for Arch Linux. It lets you select the components you want, checks that selected packages are available, creates a timestamped backup before deployment, and then copies the selected configurations into `~/.config`.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/tarranotfound/volkanos.git
+cd volkanos
+```
+
+Run the setup script:
+
+```bash
+bash scripts/volkanos-setup
+```
+
+The installer uses `gum` for its terminal menu. If `gum` is not installed, the script offers to install it with `pacman`.
+
+The setup script:
+
+1. Checks the local environment and required commands.
+2. Lets you select Volkanos components interactively.
+3. Verifies that selected packages are available through the local Arch package database.
+4. Installs the selected packages with `pacman`.
+5. Creates a timestamped backup under `~/.local/share/volkanos/backups`.
+6. Deploys the selected configuration files.
+
+The setup script should be run as a normal user. It uses `sudo` only when package installation requires it.
+
+### Dry run
+
+If you want to inspect whether the repository has the files expected by the installer without changing your configuration, run:
+
+```bash
+bash scripts/volkanos-setup-dry-run
+```
+
+For help:
+
+```bash
+bash scripts/volkanos-setup-dry-run --help
+```
+
+The dry run checks the setup environment and expected repository configuration paths without installing packages or deploying your configs.
+
+### Manual installation
+
+You can also install components manually if you prefer full control.
 
 Clone the repository:
 
@@ -98,16 +154,24 @@ cp hyprland.conf ~/.config/hypr/
 cp hyprland.lua ~/.config/hypr/
 cp hyprlock.conf ~/.config/hypr/
 cp monitors.conf ~/.config/hypr/
+cp workspaces.conf ~/.config/hypr/
 ```
 
 Do not blindly replace your existing setup. Check monitor names, input settings, keybinds, file paths, and installed programs first.
 
+## Optional AUR packages
+
+Some newer or development versions of components may be available through the Arch User Repository (AUR). See [`docs/aur-packages.md`](docs/aur-packages.md) for notes and examples.
+
+AUR packages are optional and are not required just because they appear in the documentation. Always inspect a PKGBUILD before installing an AUR package.
+
 ## Current limitations
 
-- This is not an automatic installer.
+- The automatic setup targets Arch Linux and uses `pacman`.
 - The configs are not tested on every computer.
 - Some settings depend on my ThinkPad and display name.
-- The Lua and Hyprland files may need manual merging.
+- The installer does not automatically merge an existing configuration with Volkanos.
+- Some components may require additional packages or manual setup.
 - The repository contains personal preferences and experimental changes.
 
 ## Development notes
