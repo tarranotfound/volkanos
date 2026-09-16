@@ -53,6 +53,8 @@ components=(
   'btop|btop|btop'
   'Cava|cava|cava'
   'Neovim|neovim|nvim'
+  'Fastfetch|fastfetch|fastfetch'
+  'Vibe|vibe|vibe'
   'Wallpapers tools|swww|swww'
 )
 
@@ -158,7 +160,7 @@ deploy_configs() {
       hypr)
         deploy_hyprland
         ;;
-      kitty|waybar|fuzzel|btop|cava|nvim|quickshell)
+      kitty|waybar|fuzzel|btop|cava|nvim|quickshell|niri|fastfetch|vibe)
         source="$REPO_ROOT/$config_name"
         target="$HOME/.config/$config_name"
         deploy_directory "$label" "$source" "$target"
@@ -186,7 +188,7 @@ printf '  - %s\n' "${install_packages[@]}"
 printf '\nChecking package availability:\n'
 validate_selection || exit 1
 
- gum confirm 'Create a backup of existing configs before installation?' && backup_configs
+gum confirm 'Create a backup of existing configs before installation?' && backup_configs
 gum confirm 'Continue with installation?' || exit 0
 
 sudo pacman -S --needed "${install_packages[@]}"
