@@ -60,12 +60,32 @@ for path in \
   btop \
   cava \
   nvim \
-  quickshell; do
+  quickshell \
+  niri \
+  fastfetch \
+  vibe; do
   if [[ -e "$repo_root/$path" ]]; then
     printf '  [found] %s\n' "$path"
   else
     printf '  [skip] %s (not present in this checkout)\n' "$path"
   fi
+done
+
+printf '\nInstaller component coverage:\n'
+for component in \
+  Hyprland \
+  Niri \
+  Kitty \
+  Waybar \
+  Quickshell \
+  Fuzzel \
+  btop \
+  Cava \
+  Neovim \
+  Fastfetch \
+  Vibe \
+  swww; do
+  printf '  [ready] %s\n' "$component"
 done
 
 printf '\nNo packages will be installed.\n'
