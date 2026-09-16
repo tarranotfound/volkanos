@@ -4,6 +4,26 @@ set -Eeuo pipefail
 readonly RED='\033[31m'
 readonly RESET='\033[0m'
 
+usage() {
+  cat <<'USAGE'
+Usage: volkanos-setup-dry-run
+
+Checks installer dependencies and the configuration files available in
+this Volkanos checkout. It never installs packages or copies configurations.
+USAGE
+}
+
+if [[ ${1:-} == '--help' || ${1:-} == '-h' ]]; then
+  usage
+  exit 0
+fi
+
+if [[ $# -gt 0 ]]; then
+  printf 'Unknown option: %s\n\n' "$1" >&2
+  usage >&2
+  exit 2
+fi
+
 printf '%bVOLKANOS SETUP — DRY RUN%b\n\n' "$RED" "$RESET"
 
 if [[ ${EUID} -eq 0 ]]; then
@@ -28,7 +48,19 @@ printf '\nChecking repository layout:\n'
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 repo_root=$(cd -- "$script_dir/.." && pwd)
 
-for path in hyprland.lua kitty waybar fuzzel btop cava nvim quickshell; do
+for path in \
+  hyprland.lua \
+  hyprland.conf \
+  monitors.conf \
+  workspaces.conf \
+  hyprlock.conf \
+  kitty \
+  waybar \
+  fuzzel \
+  btop \
+  cava \
+  nvim \
+  quickshell; do
   if [[ -e "$repo_root/$path" ]]; then
     printf '  [found] %s\n' "$path"
   else
@@ -44,4 +76,4 @@ if (( failed )); then
   exit 1
 fi
 
-printf '\nDry run passed. The main installer can be reviewed safely.\n'
+printf '\nDry run finished. Review the report before running the main installer.\n'
