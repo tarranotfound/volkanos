@@ -44,30 +44,59 @@ for command_name in "${checks[@]}"; do
   fi
 done
 
-printf '\nChecking repository layout:\n'
+printf '\nChecking required repository files:\n'
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 repo_root=$(cd -- "$script_dir/.." && pwd)
 
-for path in \
-  hyprland.lua \
-  hyprland.conf \
-  monitors.conf \
-  workspaces.conf \
-  hyprlock.conf \
-  kitty \
-  waybar \
-  fuzzel \
-  btop \
-  cava \
-  nvim \
-  quickshell \
-  niri \
-  fastfetch \
-  vibe; do
-  if [[ -e "$repo_root/$path" ]]; then
+required_files=(
+  hyprland.lua
+  hyprland.conf
+  hyprlock.conf
+)
+
+for path in "${required_files[@]}"; do
+  if [[ -f "$repo_root/$path" ]]; then
+    printf '  [found] %s\n' "$path"
+  else
+    printf '  [missing] %s\n' "$path"
+    failed=1
+  fi
+done
+
+printf '\nChecking optional repository files:\n'
+optional_files=(
+  monitors.conf
+  workspaces.conf
+)
+
+for path in "${optional_files[@]}"; do
+  if [[ -f "$repo_root/$path" ]]; then
     printf '  [found] %s\n' "$path"
   else
     printf '  [skip] %s (not present in this checkout)\n' "$path"
+  fi
+done
+
+printf '\nChecking component config directories:\n'
+config_dirs=(
+  kitty
+  waybar
+  fuzzel
+  btop
+  cava
+  nvim
+  quickshell
+  niri
+  fastfetch
+  vibe
+)
+
+for path in "${config_dirs[@]}"; do
+  if [[ -d "$repo_root/$path" ]]; then
+    printf '  [found] %s/\n' "$path"
+  else
+    printf '  [missing] %s/\n' "$path"
+    failed=1
   fi
 done
 
@@ -92,7 +121,7 @@ printf '\nNo packages will be installed.\n'
 printf 'No configuration files will be copied.\n'
 
 if (( failed )); then
-  printf '\nDry run finished with missing dependencies.\n'
+  printf '\nDry run finished with repository or dependency errors.\n'
   exit 1
 fi
 
