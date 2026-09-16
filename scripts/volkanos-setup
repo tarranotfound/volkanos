@@ -7,6 +7,8 @@ readonly BACKUP_ROOT="$HOME/.local/share/volkanos/backups"
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 
+BACKUP_DIR=''
+
 if [[ ${EUID} -eq 0 ]]; then
   printf '%bDo not run Volkanos Setup as root.%b\n' "$VOLKANOS_RED" "$RESET" >&2
   exit 1
@@ -96,24 +98,25 @@ validate_selection() {
 }
 
 backup_configs() {
-  local timestamp backup_dir label config_name config_dir
+  local timestamp label config_name config_dir
   timestamp=$(date +%Y%m%d-%H%M%S)
-  backup_dir="$BACKUP_ROOT/$timestamp"
-  mkdir -p "$backup_dir"
+  BACKUP_DIR="$BACKUP_ROOT/$timestamp"
+  mkdir -p "$BACKUP_DIR"
 
   while IFS= read -r label; do
     [[ -z $label ]] && continue
     config_name=${packages[$label]##*|}
     config_dir="$HOME/.config/$config_name"
     if [[ -e $config_dir ]]; then
-      cp -a "$config_dir" "$backup_dir/"
+      cp -a "$config_dir" "$BACKUP_DIR/"
       printf '  Backed up: %s\n' "$config_dir"
     else
+      touch "$BACKUP_DIR/.missing-$config_name"
       printf '  Skipped: %s (not found)\n' "$config_dir"
     fi
   done <<< "$selected"
 
-  printf '\nBackup saved to: %s\n' "$backup_dir"
+  printf '\nBackup saved to: %s\n' "$BACKUP_DIR"
 }
 
 deploy_directory() {
@@ -169,6 +172,32 @@ deploy_configs() {
   done <<< "$selected"
 }
 
+rollback_configs() {
+  local label config_name target
+
+  [[ -n $BACKUP_DIR && -d $BACKUP_DIR ]] || return 0
+
+  printf '\nDeployment failed. Restoring the previous configuration...\n'
+
+  while IFS= read -r label; do
+    [[ -z $label ]] && continue
+    config_name=${packages[$label]##*|}
+    target="$HOME/.config/$config_name"
+
+    rm -rf -- "$target"
+
+    if [[ -f "$BACKUP_DIR/.missing-$config_name" ]]; then
+      printf '  Removed new config: %s\n' "$target"
+    elif [[ -d "$BACKUP_DIR/$config_name" ]]; then
+      mkdir -p "$(dirname -- "$target")"
+      cp -a "$BACKUP_DIR/$config_name" "$target"
+      printf '  Restored: %s\n' "$target"
+    fi
+  done <<< "$selected"
+
+  printf 'Rollback finished.\n'
+}
+
 printf '%bVOLKANOS SETUP%b\n\n' "$VOLKANOS_RED" "$RESET"
 selected=$(printf '%s\n' "${labels[@]}" | gum choose --no-limit --header='Select components to install:') || exit 0
 
@@ -193,6 +222,9 @@ gum confirm 'Continue with installation?' || exit 0
 
 sudo pacman -S --needed "${install_packages[@]}"
 
-gum confirm 'Deploy selected Volkanos configs now?' && deploy_configs
+gum confirm 'Deploy selected Volkanos configs now?' && if ! deploy_configs; then
+  rollback_configs
+  exit 1
+fi
 
 printf '\nVolkanos Setup finished.\n'
