@@ -43,6 +43,9 @@ The configuration keeps the Volkanos workflow keyboard-first and uses Waybar for
 | Super + L | Hyprlock |
 | Super + D | Waybar |
 | Super + X | Screenshot |
+| Super + Shift + C | Reload config |
+| Super + Shift + R | Restart Sway |
+| Super + Tab | Previous workspace |
 | Super + Arrow | Focus |
 | Super + Shift + Arrow | Move container |
 | Super + Ctrl + Arrow | Resize |
@@ -59,3 +62,7 @@ The configuration keeps the Volkanos workflow keyboard-first and uses Waybar for
 - Monitor-specific settings are intentionally omitted so the config can start on different displays.
 - Wallpaper expects `~/Pictures/Wallpapers/wallpaper.jpg`. Change that line if your wallpaper has another name.
 - Vibe is optional; remove its startup line if it is not installed.
+
+## Startup
+
+The session uses `sway/startup.sh` to start optional Waybar and the Volkanos wallpaper without duplicating already-running processes.
