@@ -114,15 +114,9 @@ bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioPause exec playerctl play-pause
 bindsym --locked XF86AudioPrev exec playerctl previous
 
-# Screenshot directory
+# Session startup
 exec_always mkdir -p ~/Pictures/Screenshots
-
-# Sway-compatible wallpaper
-exec_always swaybg -m fill -i ~/Pictures/Wallpapers/wallpaper.jpg
-
-# Optional Volkanos components
-exec_always pgrep -x waybar >/dev/null || waybar
-exec_always pgrep -x vibe >/dev/null || vibe eDP-1
+exec_always ~/.config/sway/startup.sh
 
 # Disable Sway title bars; keep the rice border-only.
 default_border pixel 2
