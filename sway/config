@@ -39,6 +39,8 @@ bindsym $mod+l exec hyprlock
 bindsym $mod+d exec waybar
 bindsym $mod+Shift+d exec waybar
 bindsym $mod+x exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
 # Focus
 bindsym $mod+Left focus left
