@@ -116,7 +116,7 @@ bindsym --locked XF86AudioPrev exec playerctl previous
 
 # Session startup
 exec_always mkdir -p ~/Pictures/Screenshots
-exec_always ~/.config/sway/startup.sh
+exec_always bash ~/.config/sway/startup.sh
 
 # Disable Sway title bars; keep the rice border-only.
 default_border pixel 2
