@@ -47,6 +47,7 @@ check_environment
 
 components=(
   'Hyprland|hyprland|hypr'
+  'Sway|sway|sway'
   'Niri|niri|niri'
   'Kitty|kitty|kitty'
   'Waybar|waybar|waybar'
@@ -162,6 +163,11 @@ deploy_configs() {
     case "$config_name" in
       hypr)
         deploy_hyprland
+        ;;
+      sway)
+        source="$REPO_ROOT/sway"
+        target="$HOME/.config/sway"
+        deploy_directory "$label" "$source" "$target"
         ;;
       kitty|waybar|fuzzel|btop|cava|nvim|quickshell|niri|fastfetch|vibe)
         source="$REPO_ROOT/$config_name"
