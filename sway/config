@@ -6,8 +6,13 @@ set $term kitty
 set $menu fuzzel
 
 # Environment
-set $gnome_schema org.gnome.desktop.interface
 seat * xcursor_theme Bibata-Modern-Classic 24
+
+# ThinkPad-friendly input
+input type:touchpad {
+    tap enabled
+    natural_scroll disabled
+}
 
 # Gaps and borders
 gaps inner 4
