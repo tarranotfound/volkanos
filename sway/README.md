@@ -63,6 +63,17 @@ The configuration keeps the Volkanos workflow keyboard-first and uses Waybar for
 - Wallpaper expects `~/Pictures/Wallpapers/wallpaper.jpg`. Change that line if your wallpaper has another name.
 - Vibe is optional; remove its startup line if it is not installed.
 
+## Palette
+
+| Role | Color |
+|---|---|
+| Active border | `#e0283b` |
+| Inactive border | `#7c8a93` |
+| Supporting surface | `#46588f` |
+| Text | `#fff1c4` |
+
+The Sway palette follows the same core colors used across Volkanos.
+
 ## Startup
 
 The session uses `sway/startup.sh` to start optional Waybar and the Volkanos wallpaper without duplicating already-running processes.
