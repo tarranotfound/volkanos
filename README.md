@@ -9,6 +9,7 @@ Volkanos is a rice I build while learning Linux, window managers, configuration 
 ## What I use
 
 - **Hyprland** — window management, keybinds, and input settings
+- **Sway** — lightweight i3-compatible Wayland window management
 - **Kitty** — terminal
 - **Waybar** — status bar
 - **Fuzzel** — application launcher
@@ -59,7 +60,7 @@ volkanos/
 └── CONTRIBUTING.md
 ```
 
-The root-level Hyprland files are kept this way because this repository started as a copy of my working configuration. Check the paths before copying anything into `~/.config`.
+The root-level Hyprland files are kept this way because this repository started as a copy of my working configuration. Sway and Niri configurations live in their own directories. Check the paths before copying anything into `~/.config`.
 
 ## Installation
 
@@ -81,6 +82,8 @@ bash scripts/volkanos-setup
 ```
 
 The installer uses `gum` for its terminal menu. If `gum` is not installed, the script offers to install it with `pacman`.
+
+The setup script includes **Hyprland, Sway, and Niri** as separate window-manager choices.
 
 The setup script:
 
