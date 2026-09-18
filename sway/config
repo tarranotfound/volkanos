@@ -1,0 +1,131 @@
+# Volkanos — Sway configuration
+# Minimal, keyboard-driven, red/sage/cream palette.
+
+set $mod Mod4
+set $term kitty
+set $menu fuzzel
+
+# Environment
+set $gnome_schema org.gnome.desktop.interface
+seat * xcursor_theme Bibata-Modern-Classic 24
+
+# Gaps and borders
+gaps inner 4
+gaps outer 8
+
+default_border pixel 2
+default_floating_border pixel 2
+smart_borders on
+smart_gaps on
+
+# Volkanos palette
+client.focused          #e0283b #e0283b #fff1c4 #e0283b #e0283b
+client.focused_inactive #7c8a93 #7c8a93 #fff1c4 #7c8a93 #7c8a93
+client.unfocused        #46588f #46588f #fff1c4 #46588f #46588f
+client.urgent            #e0283b #e0283b #fff1c4 #e0283b #e0283b
+
+# Terminal / launcher
+bindsym $mod+Return exec $term
+bindsym $mod+r exec $menu
+bindsym $mod+q kill
+bindsym $mod+v floating toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+l exec hyprlock
+bindsym $mod+d exec waybar
+bindsym $mod+Shift+d exec waybar
+bindsym $mod+x exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+
+# Move containers
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+# Resize floating/tiling containers
+bindsym $mod+Control+Left resize shrink width 40 px
+bindsym $mod+Control+Right resize grow width 40 px
+bindsym $mod+Control+Up resize shrink height 40 px
+bindsym $mod+Control+Down resize grow height 40 px
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Layout
+bindsym $mod+e layout toggle split
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+p focus parent
+bindsym $mod+space focus mode_toggle
+
+# Mouse
+floating_modifier $mod normal
+
+# Media
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessUp exec brightnessctl -e4 -n2 set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e4 -n2 set 5%-
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Screenshot directory
+exec_always mkdir -p ~/Pictures/Screenshots
+
+# Sway-compatible wallpaper
+exec_always swaybg -m fill -i ~/Pictures/Wallpapers/wallpaper.jpg
+
+# Optional Volkanos components
+exec_always pgrep -x waybar >/dev/null || waybar
+exec_always pgrep -x vibe >/dev/null || vibe eDP-1
+
+# Disable Sway title bars; keep the rice border-only.
+default_border pixel 2
+
+# Floating utilities
+for_window [app_id="^hyprland-run$"] floating enable
+for_window [class="^Pavucontrol$"] floating enable
+for_window [class="^blueman-manager$"] floating enable
+
+# Exit
+bindsym $mod+Shift+e exec swaymsg exit
