@@ -204,3 +204,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Documented the keyboard-driven workflow.
 - Added a note about keeping component configurations separate.
 - Clarified the purpose of the repository layout.
+- Added a reminder to review hardware-specific settings.
