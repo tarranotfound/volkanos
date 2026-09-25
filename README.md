@@ -202,3 +202,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Added a small README change log for easier project history.
 - Clarified that configuration choices are personal preferences.
 - Documented the keyboard-driven workflow.
+- Added a note about keeping component configurations separate.
