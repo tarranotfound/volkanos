@@ -81,7 +81,7 @@ Run the setup script:
 bash scripts/volkanos-setup
 ```
 
-The installer uses `gum` for its terminal menu. If `gum` is not installed, the script offers to install it with `pacman`.
+The installer uses **gum** for its terminal menu. If **gum** is not installed, the script offers to install it with `pacman`.
 
 The setup script includes **Hyprland, Sway, and Niri** as separate window-manager choices.
 
@@ -187,7 +187,7 @@ AI tools may be used for explanations, troubleshooting, or drafting parts of con
 
 Suggestions, bug reports, and improvements are welcome. Please explain what was tested and include the relevant application, distro, and configuration details.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 
@@ -196,3 +196,7 @@ See [LICENSE](LICENSE).
 ---
 
 Built while learning Arch Linux, Hyprland, and Git.
+
+## Recent changes
+
+- Added a small README change log for easier project history.
