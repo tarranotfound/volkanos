@@ -211,3 +211,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Clarified that AUR packages should be inspected before installation.
 - Added a note about experimental configuration changes.
 - Documented gradual configuration updates.
+- Clarified that not every component is tested on every machine.
