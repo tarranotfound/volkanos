@@ -206,3 +206,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Clarified the purpose of the repository layout.
 - Added a reminder to review hardware-specific settings.
 - Documented the dry-run command more explicitly.
+- Clarified that the installer is intended for normal-user execution.
