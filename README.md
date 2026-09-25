@@ -209,3 +209,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Clarified that the installer is intended for normal-user execution.
 - Added a note about optional AUR packages.
 - Clarified that AUR packages should be inspected before installation.
+- Added a note about experimental configuration changes.
