@@ -200,3 +200,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 ## Recent changes
 
 - Added a small README change log for easier project history.
+- Clarified that configuration choices are personal preferences.
