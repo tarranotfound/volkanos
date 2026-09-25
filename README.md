@@ -205,3 +205,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Added a note about keeping component configurations separate.
 - Clarified the purpose of the repository layout.
 - Added a reminder to review hardware-specific settings.
+- Documented the dry-run command more explicitly.
