@@ -213,3 +213,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Documented gradual configuration updates.
 - Clarified that not every component is tested on every machine.
 - Added a note about checking installed programs before copying configs.
+- Refined the README history section for future maintenance.
