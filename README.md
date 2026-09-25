@@ -207,3 +207,4 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Added a reminder to review hardware-specific settings.
 - Documented the dry-run command more explicitly.
 - Clarified that the installer is intended for normal-user execution.
+- Added a note about optional AUR packages.
