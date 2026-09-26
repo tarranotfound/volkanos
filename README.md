@@ -238,3 +238,7 @@ Some window-manager settings are intentionally easy to adjust as the configurati
 
 ### Testing
 Configuration changes should be checked on the target Wayland session before being treated as hardware-independent defaults.
+
+
+### Backups
+The setup workflow creates a timestamped backup before deploying selected components, making configuration changes easier to revert.
