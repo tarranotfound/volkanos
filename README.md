@@ -222,3 +222,7 @@ Volkanos keeps each desktop component in its own directory or configuration file
 
 ### Hardware scope
 The default layout is designed around a laptop workflow, while monitor and workspace overrides remain available for other setups.
+
+
+### Visual priorities
+Volkanos prioritizes readable spacing, thin borders, keyboard navigation, and a small set of accent colors.
