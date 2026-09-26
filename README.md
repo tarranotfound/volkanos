@@ -242,3 +242,7 @@ Configuration changes should be checked on the target Wayland session before bei
 
 ### Backups
 The setup workflow creates a timestamped backup before deploying selected components, making configuration changes easier to revert.
+
+
+### Launcher customization
+Fuzzel settings are kept separate so launcher spacing, colors, and placement can be tuned without changing the window-manager configuration.
