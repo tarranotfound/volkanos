@@ -246,3 +246,7 @@ The setup workflow creates a timestamped backup before deploying selected compon
 
 ### Launcher customization
 Fuzzel settings are kept separate so launcher spacing, colors, and placement can be tuned without changing the window-manager configuration.
+
+
+### Terminal customization
+Kitty remains independently configurable for typography, padding, palette, and window behavior.
