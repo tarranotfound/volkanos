@@ -214,3 +214,7 @@ Built while learning Arch Linux, Hyprland, and Git.
 - Clarified that not every component is tested on every machine.
 - Added a note about checking installed programs before copying configs.
 - Refined the README history section for future maintenance.
+
+
+### Configuration workflow
+Volkanos keeps each desktop component in its own directory or configuration file so changes can be tested independently.
