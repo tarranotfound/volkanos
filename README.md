@@ -218,3 +218,7 @@ Built while learning Arch Linux, Hyprland, and Git.
 
 ### Configuration workflow
 Volkanos keeps each desktop component in its own directory or configuration file so changes can be tested independently.
+
+
+### Hardware scope
+The default layout is designed around a laptop workflow, while monitor and workspace overrides remain available for other setups.
