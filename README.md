@@ -230,3 +230,7 @@ Volkanos prioritizes readable spacing, thin borders, keyboard navigation, and a 
 
 ### Component isolation
 Individual components can be copied into `~/.config` without requiring the complete Volkanos setup.
+
+
+### Experimental settings
+Some window-manager settings are intentionally easy to adjust as the configuration evolves.
