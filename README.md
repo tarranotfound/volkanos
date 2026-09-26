@@ -226,3 +226,7 @@ The default layout is designed around a laptop workflow, while monitor and works
 
 ### Visual priorities
 Volkanos prioritizes readable spacing, thin borders, keyboard navigation, and a small set of accent colors.
+
+
+### Component isolation
+Individual components can be copied into `~/.config` without requiring the complete Volkanos setup.
