@@ -234,3 +234,7 @@ Individual components can be copied into `~/.config` without requiring the compl
 
 ### Experimental settings
 Some window-manager settings are intentionally easy to adjust as the configuration evolves.
+
+
+### Testing
+Configuration changes should be checked on the target Wayland session before being treated as hardware-independent defaults.
