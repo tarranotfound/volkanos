@@ -18,3 +18,7 @@ Check:
 - lock command
 
 This keeps the Volkanos visual identity consistent while allowing each compositor to use its own native configuration.
+
+## Experimental status
+
+Treat Niri-specific changes as experimental until they have been tested on the target Wayland session.
