@@ -14,3 +14,7 @@ When adapting components:
 4. Avoid assuming Hyprland-only IPC features.
 
 The goal is a recognizable Volkanos workflow while keeping the configuration native to Sway.
+
+## Testing
+
+Test Sway-specific changes in a separate session before treating them as shared Volkanos defaults.
