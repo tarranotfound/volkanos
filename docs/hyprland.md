@@ -17,3 +17,7 @@ Do not copy monitor and input settings blindly. Device names and available outpu
 ## Reloading
 
 After a safe configuration change, reload the compositor using the reload mechanism supported by the installed Hyprland version. If the session becomes unstable, return to the last known-good Git revision.
+
+## Workflow
+
+Treat the Hyprland configuration as one component of the larger rice. Test compositor changes independently before changing launcher, terminal, or status-bar configuration.
