@@ -255,3 +255,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Clarified the keyboard-driven workflow.
 - Refined notes about independent components.
 - Documented the configuration backup workflow.
+- Clarified the hardware-specific scope.
