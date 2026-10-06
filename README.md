@@ -260,3 +260,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Clarified how to use the dry-run workflow.
 - Improved notes about launcher customization.
 - Improved notes about terminal customization.
+- Clarified configuration testing guidance.
