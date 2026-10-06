@@ -256,3 +256,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Refined notes about independent components.
 - Documented the configuration backup workflow.
 - Clarified the hardware-specific scope.
+- Refined the installation guidance.
