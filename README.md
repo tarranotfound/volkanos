@@ -261,3 +261,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Improved notes about launcher customization.
 - Improved notes about terminal customization.
 - Clarified configuration testing guidance.
+- Refined notes about experimental settings.
