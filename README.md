@@ -263,3 +263,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Clarified configuration testing guidance.
 - Refined notes about experimental settings.
 - Improved maintenance guidance.
+- Updated the project history for today's changes.
