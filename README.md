@@ -252,3 +252,4 @@ Fuzzel settings are kept separate so launcher spacing, colors, and placement can
 Kitty remains independently configurable for typography, padding, palette, and window behavior.
 
 - Refined the project overview for easier navigation.
+- Clarified the keyboard-driven workflow.
