@@ -254,3 +254,4 @@ Kitty remains independently configurable for typography, padding, palette, and w
 - Refined the project overview for easier navigation.
 - Clarified the keyboard-driven workflow.
 - Refined notes about independent components.
+- Documented the configuration backup workflow.
