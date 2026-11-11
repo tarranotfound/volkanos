@@ -1,6 +1,6 @@
 # btop
 
-Custom btop configuration for Volkanos.
+Custom btop configuration for Volkanos
 
 ## Included
 
